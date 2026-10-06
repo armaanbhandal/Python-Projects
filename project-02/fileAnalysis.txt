@@ -1,0 +1,97 @@
+Unique words in the first file:
+one
+two
+three
+four
+five
+six
+seven
+eight
+nine
+ten
+eleven
+twelve
+
+Unique words in the second file:
+one
+two
+three
+four
+five
+six
+anotherseven
+anothereight
+nine
+ten
+eleven
+twelve
+
+Words in both files (union):
+one
+two
+three
+four
+five
+six
+seven
+eight
+nine
+ten
+eleven
+twelve
+anotherseven
+anothereight
+
+Common words in both files:
+one
+two
+three
+four
+five
+six
+nine
+ten
+eleven
+twelve
+
+Words in the first file but not in the second:
+seven
+eight
+
+Words in the second file but not in the first:
+anotherseven
+anothereight
+
+Words in either file but not both (exclusive):
+seven
+eight
+anotherseven
+anothereight
+
+Frequency table for the first file:
+eight: 1
+eleven: 1
+five: 1
+four: 1
+nine: 1
+one: 2
+seven: 1
+six: 1
+ten: 1
+three: 2
+twelve: 1
+two: 2
+
+Frequency table for the second file:
+anothereight: 1
+anotherseven: 1
+eleven: 2
+five: 1
+four: 1
+nine: 1
+one: 1
+six: 1
+ten: 2
+three: 1
+twelve: 2
+two: 1

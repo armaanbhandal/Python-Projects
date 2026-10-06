@@ -48,7 +48,11 @@ def decryptMessages(filename):
 
 def main():
     input_filename = input("Enter the input filename containing the original messages: ").strip()
-    messages = readMessages(input_filename)
+    try:
+        messages = readMessages(input_filename)
+    except FileNotFoundError:
+        print(f"File not found: {input_filename}")
+        return
     encryptMessages(messages)
     decryptMessages('encrypted_messages.txt')
 

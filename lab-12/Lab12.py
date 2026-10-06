@@ -7,8 +7,12 @@ def main():
     print("Enter 6 names (First and Last):")
     people = {}
     for i in range(6):
-        full_name = input(f"Name {i + 1}: ").strip()
-        first_name, last_name = full_name.split()
+        while True:
+            parts = input(f"Name {i + 1}: ").split()
+            if len(parts) == 2:
+                break
+            print("Please enter exactly a first and last name, like: Jane Smith")
+        first_name, last_name = parts
         people[first_name] = last_name
 
     family_name = input("\nEnter family name: ").strip()

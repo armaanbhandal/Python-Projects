@@ -1,7 +1,17 @@
 # Assignment 08 Q05 - Armaan Bhandal
 
-first_name = input("Enter first name: ").lower()
-last_name = input("Enter last name: ").lower()
-print("Intersection:", set(first_name) & set(last_name))
-print("Union:", set(first_name) | set(last_name))
-print("Symmetric Difference:", set(first_name) ^ set(last_name))
+
+def main():
+    first_name = input("Enter first name: ").strip().lower()
+    last_name = input("Enter last name: ").strip().lower()
+
+    first_letters = set(first_name)
+    last_letters = set(last_name)
+
+    print("Intersection:", sorted(first_letters & last_letters))
+    print("Union:", sorted(first_letters | last_letters))
+    print("Symmetric Difference:", sorted(first_letters ^ last_letters))
+
+
+if __name__ == "__main__":
+    main()

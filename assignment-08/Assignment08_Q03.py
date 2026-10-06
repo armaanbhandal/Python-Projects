@@ -1,6 +1,17 @@
 # Assignment 08 Q03 - Armaan Bhandal
 
-digit_to_word = {str(i): word for i, word in enumerate(
+DIGIT_TO_WORD = {str(i): word for i, word in enumerate(
     ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"])}
-number = input("Enter an integer to convert to words: ")
-print(" ".join(digit_to_word[digit] for digit in number))
+
+
+def main():
+    while True:
+        number = input("Enter an integer to convert to words: ").strip()
+        if number.isdigit():
+            break
+        print("Please enter digits only (for example 2025).")
+    print(" ".join(DIGIT_TO_WORD[digit] for digit in number))
+
+
+if __name__ == "__main__":
+    main()

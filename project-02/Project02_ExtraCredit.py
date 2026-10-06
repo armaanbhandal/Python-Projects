@@ -5,10 +5,13 @@ def load_data(file_name):
     try:
         with open(file_name, 'r') as file:
             for line in file:
-                name, email = line.strip().split(':')
+                # Skip blank or malformed lines instead of losing the rest of the file
+                if ':' not in line:
+                    continue
+                name, email = line.strip().split(':', 1)
                 data[name] = email
-    except (FileNotFoundError, ValueError):
-        pass 
+    except FileNotFoundError:
+        pass  # No saved contacts yet; start with an empty book
     return data
 
 def save_data(file_name, data):

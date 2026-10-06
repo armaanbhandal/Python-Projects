@@ -1,46 +1,50 @@
 # Lab 10 - Armaan Bhandal
 
-correct_answers = ['B', 'D', 'A', 'A', 'C', 'A', 'B', 'A', 'C', 'D']
+CORRECT_ANSWERS = ['B', 'D', 'A', 'A', 'C', 'A', 'B', 'A', 'C', 'D']
+PASSING_SCORE = 7
 
-input_file = "student_solution.txt"
-output_file = "test_result.txt"
+INPUT_FILE = "student_solution.txt"
+OUTPUT_FILE = "test_result.txt"
 
-try:
-    with open(input_file, 'r') as file:
-        student_answers = [line.strip() for line in file.readlines()]
 
-    if len(student_answers) != 10:
-        raise ValueError("The student_solution.txt file must contain exactly 10 answers.")
+def main():
+    try:
+        with open(INPUT_FILE, 'r') as file:
+            # Ignore blank lines and accept lowercase answers
+            student_answers = [line.strip().upper() for line in file if line.strip()]
+    except FileNotFoundError:
+        print(f"Error: The file {INPUT_FILE} was not found. Make sure the file exists.")
+        return
 
-    correct_count = 0
-    incorrect_count = 0
+    if len(student_answers) != len(CORRECT_ANSWERS):
+        print(f"Error: {INPUT_FILE} must contain exactly {len(CORRECT_ANSWERS)} answers, "
+              f"one per line (found {len(student_answers)}).")
+        return
+
     correct_questions = []
     incorrect_questions = []
-
-    for i in range(len(correct_answers)):
-        if student_answers[i] == correct_answers[i]:
-            correct_count += 1
-            correct_questions.append(i + 1)
+    for number, (given, expected) in enumerate(zip(student_answers, CORRECT_ANSWERS), start=1):
+        if given == expected:
+            correct_questions.append(number)
         else:
-            incorrect_count += 1
-            incorrect_questions.append(i + 1)
+            incorrect_questions.append(number)
 
-    passed = correct_count >= 7
+    passed = len(correct_questions) >= PASSING_SCORE
 
-    with open(output_file, 'w') as file:
+    with open(OUTPUT_FILE, 'w') as file:
         if passed:
             file.write("Congratulations!! You passed the exam\n")
         else:
             file.write("Sorry, you did not pass the exam\n")
-        file.write(f"You answered {correct_count} questions correctly and {incorrect_count} questions incorrectly\n")
-        file.write("The numbers of the questions you answered correctly are: " + " ".join(map(str, correct_questions)) + "\n")
-        file.write("The numbers of the questions you answered incorrectly are: " + " ".join(map(str, incorrect_questions)) + "\n")
+        file.write(f"You answered {len(correct_questions)} questions correctly and "
+                   f"{len(incorrect_questions)} questions incorrectly\n")
+        file.write("The numbers of the questions you answered correctly are: "
+                   + " ".join(map(str, correct_questions)) + "\n")
+        file.write("The numbers of the questions you answered incorrectly are: "
+                   + " ".join(map(str, incorrect_questions)) + "\n")
 
-    print("Results successfully written to", output_file)
+    print("Results successfully written to", OUTPUT_FILE)
 
-except FileNotFoundError:
-    print(f"Error: The file {input_file} was not found. Make sure the file exists.")
-except ValueError as e:
-    print(f"Error: {e}")
-except Exception as e:
-    print(f"An unexpected error occurred: {e}")
+
+if __name__ == "__main__":
+    main()
